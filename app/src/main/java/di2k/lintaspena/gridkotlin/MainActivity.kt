@@ -1,6 +1,7 @@
 package di2k.lintaspena.gridkotlin
 //Created by 디딬 Didik M. Hadiningrat on 19 July 201
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,12 +21,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //load foods
-        foodList.add(Food("Coffee", R.drawable.coffee_pot))
-        foodList.add(Food("Espresso", R.drawable.espresso))
-        foodList.add(Food("French Fires", R.drawable.french_fries))
-        foodList.add(Food("Honey", R.drawable.honey))
-        foodList.add(Food("Strawberry", R.drawable.strawberry_ice_cream))
-        foodList.add(Food("Sugar Cubes", R.drawable.sugar_cubes))
+        foodList.add(Food("Coffee", "" ,R.drawable.coffee_pot))
+        foodList.add(Food("Espresso", "" ,R.drawable.espresso))
+        foodList.add(Food("French Fires","", R.drawable.french_fries))
+        foodList.add(Food("Honey","", R.drawable.honey))
+        foodList.add(Food("Strawberry","", R.drawable.strawberry_ice_cream))
+        foodList.add(Food("Sugar Cubes","", R.drawable.sugar_cubes))
         adapter = FoodAdapter(this, foodList)
 
         gvFoods.adapter = adapter
@@ -57,6 +58,14 @@ class MainActivity : AppCompatActivity() {
 
             var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             var foodView = inflator.inflate(R.layout.food_entry, null)
+            foodView.imgFood.setOnClickListener{
+                val intent = Intent(context, FoodDetails::class.java)
+                intent.putExtra("name", food.name!!)
+                intent.putExtra("description", food.description!!)
+                intent.putExtra("image", food.image!!)
+                context!!.startActivity(intent)
+            }
+
             foodView.imgFood.setImageResource(food.image!!)
             foodView.tvName.text = food.name!!
 
