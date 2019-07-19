@@ -1,5 +1,5 @@
 package di2k.lintaspena.gridkotlin
-
+//Created by 디딬 Didik M. Hadiningrat on 19 July 201
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
